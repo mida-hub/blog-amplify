@@ -5,10 +5,8 @@
       <el-divider/>
     </el-header>
     <el-main>
-      <el-row style="width: 100%;">
-        <el-col>
-          <Tag/>
-        </el-col>
+      <el-row type="flex" justify="center">
+        <Tag/>
       </el-row>
       <el-row style="width: 80%;">
         <el-col :offset="3">
