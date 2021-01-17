@@ -28,7 +28,7 @@
   }
 
   .blog-title-name{
-    margin: 2px;
+    margin: -4px;
   }
 
   .blog-title-img{

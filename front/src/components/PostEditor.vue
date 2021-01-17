@@ -23,14 +23,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import MarkdownItVue from 'markdown-it-vue'
 import 'markdown-it-vue/dist/markdown-it-vue.css'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en'
-
-Vue.use(ElementUI, { locale })
 
 export default {
   components: {
