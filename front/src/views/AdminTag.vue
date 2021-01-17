@@ -4,19 +4,19 @@
       <Menu/>
     </el-row>
     <el-row>
-      <PostView/>
+      <TagView/>
     </el-row>
   </div>
 </template>
 
 <script>
 import Menu from '@/components/admin/Menu'
-import PostView from '@/components/admin/PostView'
+import TagView from '@/components/admin/TagView'
 
 export default {
   components: {
     Menu,
-    PostView
+    TagView
   },
 }
 </script>
