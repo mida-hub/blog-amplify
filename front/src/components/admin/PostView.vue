@@ -1,22 +1,17 @@
 <template>
   <div>
     <el-row type="flex" justify="center">
-      <TagRegist/>
-    </el-row>
-    <el-row type="flex" justify="center">
-      <TagList/>
+      <PostList/>
     </el-row>
   </div>
 </template>
 
 <script>
-import TagRegist from '@/components/admin/TagRegist'
-import TagList from '@/components/admin/TagList'
+import PostList from '@/components/admin/PostList'
 
 export default {
   components: {
-    TagRegist,
-    TagList
+    PostList
   },
   data() {
     return {

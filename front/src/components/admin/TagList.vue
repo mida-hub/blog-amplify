@@ -21,7 +21,7 @@
       </el-table-column>
       <el-table-column
         label="アクション">
-        <el-button type="primary" @click="onSubmit">編集</el-button>
+        <el-button type="primary" @click="onSubmit">更新</el-button>
         <el-button type="danger" @click="onSubmit">削除</el-button>
       </el-table-column>
     </el-table>

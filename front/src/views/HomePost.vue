@@ -5,12 +5,9 @@
       <el-divider/>
     </el-header>
     <el-main>
-      <el-row type="flex" justify="center">
-        <Tag/>
-      </el-row>
       <el-row style="width: 80%;">
         <el-col :offset="3">
-          <PostList/>
+          <PostDetail/>
         </el-col>
       </el-row>
     </el-main>
@@ -25,14 +22,14 @@
 import Header from '@/components/blog/Header'
 import Footer from '@/components/blog/Footer'
 import Tag from '@/components/blog/Tag'
-import PostList from '@/components/blog/PostList'
+import PostDetail from '@/components/blog/PostDetail'
 
 export default {
   components: {
     Header,
     Footer,
     Tag,
-    PostList
+    PostDetail
   },
   data () {
     return {

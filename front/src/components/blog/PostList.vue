@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col>
-        投稿日時、更新日時
+        投稿日時
       </el-col>
     </el-row>
     <el-row>

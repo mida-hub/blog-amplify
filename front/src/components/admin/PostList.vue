@@ -1,26 +1,38 @@
 <template>
-  <div  class="tag-list">
-    タグ一覧
+  <div class="post-list">
+    記事一覧
     <el-table
     :data="tableData"
     stripe
-    style="width: 440pt">
+    >
       <el-table-column
-        label="タグ名"
-        width="180">
-        <template v-slot="scope">
-          <el-input v-model="scope.row.tag_name"></el-input>
-        </template>
+        label="タイトル"
+        prop="title"
+        width="300">
       </el-table-column>
       <el-table-column
-        label="ソートキー"
+        label="投稿日時"
+        prop="created_at"
         width="180">
-        <template v-slot="scope">
-          <el-input v-model="scope.row.sort_key"></el-input>
-        </template>
       </el-table-column>
       <el-table-column
-        label="アクション">
+        label="更新日時"
+        prop="created_at"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        label="公開予定日時"
+        prop="publish_at"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        label="公開フラグ"
+        prop="is_publish"
+        width="100">
+      </el-table-column>
+      <el-table-column
+        label="アクション"
+        width="180">
         <el-button type="primary" @click="onSubmit">編集</el-button>
         <el-button type="danger" @click="onSubmit">削除</el-button>
       </el-table-column>
@@ -36,17 +48,29 @@ export default {
   data() {
     return {
         tableData: [{
-          tag_name: 'Python',
-          sort_key: '1'
+          title: 'タイトル1',
+          created_at: '2020-12-01 00:00:00',
+          updated_at: '2020-12-01 00:00:00',
+          publish_at: '2020-12-02 00:00:00',
+          is_publish: 'False'
         }, {
-          tag_name: '分析',
-          sort_key: '2'
+          title: 'タイトル2',
+          created_at: '2020-12-01 00:00:00',
+          updated_at: '2020-12-01 00:00:00',
+          publish_at: '2020-12-02 00:00:00',
+          is_publish: 'True'
         }, {
-          tag_name: 'AtCoder',
-          sort_key: '3'
+          title: 'タイトル3',
+          created_at: '2020-12-01 00:00:00',
+          updated_at: '2020-12-01 00:00:00',
+          publish_at: '2020-12-02 00:00:00',
+          is_publish: 'False'
         }, {
-          tag_name: 'AWS/GCP',
-          sort_key: '4'
+          title: 'タイトル4',
+          created_at: '2020-12-01 00:00:00',
+          updated_at: '2020-12-01 00:00:00',
+          publish_at: '2020-12-02 00:00:00',
+          is_publish: 'True'
         }]
     };
   },
@@ -59,7 +83,7 @@ export default {
 </script>
 
 <style scoped>
-  .tag-list {
+  .post-list {
     margin-left: 10px;
   }
 </style>
