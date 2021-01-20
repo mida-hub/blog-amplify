@@ -1,61 +1,56 @@
 <template>
   <div>
-    <el-row>
-      <el-col>
-        投稿日時
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col>
-        Title
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col>
-        タグ
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col>
-        <markdown-it-vue 
-          class="md-body" 
-          :content="content" 
-          :options="options" 
-          @render-complete=hdlCmplete 
-        />
-      </el-col>
-    </el-row>
+    <el-card class="box-card" shadow="never">
+      <div slot="header" class="clearfix">
+        <h2>Title１２３４５６７８９０Title１２３４５６７８９０</h2>
+        <div style="font-size:12px; color: #909399;">投稿日時 [tag1] [tag2]</div>
+      </div>
+      <div v-for="o in 4" :key="o" class="text item">
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+      </div>
+    </el-card>
+    <el-card class="box-card" shadow="never">
+      <div slot="header" class="clearfix">
+        <h2>Title１２３４５６７８９０Title１２３４５６７８９０</h2>
+        <div style="font-size:12px; color: #909399;">投稿日時 [tag1] [tag2]</div>
+      </div>
+      <div v-for="o in 4" :key="o" class="text item">
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+      </div>
+    </el-card>
+    <el-card class="box-card" shadow="never">
+      <div slot="header" class="clearfix">
+        <h2>Title１２３４５６７８９０Title１２３４５６７８９０</h2>
+        <div style="font-size:12px; color: #909399;">投稿日時 [tag1] [tag2]</div>
+      </div>
+      <div v-for="o in 4" :key="o" class="text item">
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+        概要概要概要概要概要概要概要１２３４５６７８９０１２３４５６７８９０
+      </div>
+    </el-card>
   </div>
 </template>
 
 <script>
-import MarkdownItVue from 'markdown-it-vue'
-import 'markdown-it-vue/dist/markdown-it-vue.css'
-
 export default {
   components: {
-    MarkdownItVue
   },
   data () {
     return {
-      content: '# your markdown content\n ## test \n ```Python \n print(1) \n ```',
-      options: {
-        markdownIt: {
-          linkify: true
-        },
-        linkAttributes: {
-          attrs: {
-            target: '_self',
-            rel: 'noopener'
-          }
-        }
-      }
     }
   },
   methods: {
-    hdlCmplete() {
-      console.log('render complete')
-    }
   }
 }
 </script>
+
+<style scoped>
+  .el-card {
+    margin-bottom: 20px;
+  }
+</style>
