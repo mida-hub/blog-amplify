@@ -9,3 +9,9 @@ npm add element-ui
 npm add aws-amplify
 npm run serve
 ```
+
+# dev server
+```
+https://qiita.com/po3rin/items/c70105f684e6816621d2
+```
+
