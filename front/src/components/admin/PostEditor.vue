@@ -27,13 +27,14 @@
     </el-row>
     <el-row :gutter="50" style="width: 100%;">
       <el-col :span="12">
-        <el-input
-          class="md-text"
-          type="textarea"
-          :autosize="{ minRows: 30}"
+        <textarea
+          class="md-text el-textarea el-textarea__inner"
           placeholder="Please input"
-          v-model="content">
-        </el-input>
+          rows=30
+          ref="inputContent"
+          v-model="content"
+          @drop.prevent="handleDrop" 
+        ></textarea>
       </el-col>
       <el-col :span="12">
         <markdown-it-vue 
@@ -57,6 +58,7 @@
 <script>
 import MarkdownItVue from 'markdown-it-vue'
 import 'markdown-it-vue/dist/markdown-it-vue.css'
+import axios from 'axios'
 
 export default {
   components: {
@@ -98,7 +100,8 @@ export default {
         tags: [],
         publish_at: '',
         is_publish: false,
-      }
+      },
+      image_upload_path: 'http://localhost:8888/images'
     }
   },
   methods: {
@@ -107,7 +110,45 @@ export default {
     },
     onSubmit() {
       console.log('submit!');
-    }
+    },
+    // ファイルがドロップされたときだけ処理する
+    handleDrop: function(e) {
+      var files = e.dataTransfer.files
+      if (!files.length) {
+        return;
+      }
+      if (!files[0].type.match('image.*')) {
+        return;
+      }
+      var formData = new FormData()
+      formData.append('file', files[0]);
+      this.postImage(formData);
+    },
+    postImage: function(formData) {
+      let config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+      axios
+        .post(this.image_upload_path, formData, config)
+        .then(response => {
+          var textarea = this.$refs.inputContent;
+          var sentence = textarea.value;
+          var len = sentence.length;
+          var pos = textarea.selectionStart;
+          var before = sentence.substr(0, pos);
+          var after = sentence.substr(pos, len);
+          // ToDo: responseでurlを受け取るようにするか動的に取得するようにする
+          var word = '![image](/IMG_6572.jpg)'
+          sentence = before + word + after
+          this.content = sentence;
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
   }
 }
 </script>
