@@ -22,6 +22,9 @@
           <el-form-item label="公開フラグ">
             <el-switch v-model="form.is_publish"></el-switch>
           </el-form-item>
+          <el-form-item label="概要">
+            <el-input type="textarea" :rows="5" v-model="form.abstract"></el-input>
+          </el-form-item>
         </el-form>
       </el-col>
     </el-row>
@@ -100,6 +103,7 @@ export default {
         tags: [],
         publish_at: '',
         is_publish: false,
+        abstract: ''
       },
       image_upload_path: 'http://localhost:8888/images'
     }
