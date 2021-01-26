@@ -6,6 +6,9 @@
           <el-form-item label="タイトル">
             <el-input v-model="form.title"></el-input>
           </el-form-item>
+          <el-form-item label="Permanent Link">
+            <el-input v-model="form.link"></el-input>
+          </el-form-item>
           <el-form-item label="タグ">
             <el-select v-model="post_tags" multiple placeholder="Select">
               <el-option
@@ -100,6 +103,7 @@ export default {
       post_tags: [],
       form: {
         title: '',
+        link: '',
         tags: [],
         publish_at: '',
         is_publish: false,

@@ -17,4 +17,5 @@ https://qiita.com/po3rin/items/c70105f684e6816621d2
 # textarea markdown image upload
 https://imatomix.com/imatomix/notes/1509535920
 
-
+# appsync
+https://docs.aws.amazon.com/appsync/latest/devguide/using-your-api.html
