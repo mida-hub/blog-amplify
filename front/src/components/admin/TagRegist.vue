@@ -3,31 +3,35 @@
     タグ登録
     <el-form label-position="left" :inline="true">
       <el-form-item label="タグ名">
-        <el-input v-model="form.tag_name"></el-input>
+        <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="ソートキー">
-        <el-input v-model="form.sort_key"></el-input>
+        <el-input v-model.number="form.sort_key"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">登録</el-button>
+        <el-button type="primary" @click="createTag">登録</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+  import tagService from '../../services/tagService'
+
   export default {
     data() {
       return {
         form: {
-          tag_name: '',
+          name: '',
           sort_key: ''
         },
       }
     },
     methods: {
-      onSubmit() {
-        console.log('submit!');
+      async createTag() {
+        await tagService.createTag(this.form.name, this.form.sort_key)
+        this.form.name = ''
+        this.form.sort_key = ''
       }
     }
   }
