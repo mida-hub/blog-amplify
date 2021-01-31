@@ -38,19 +38,6 @@ export default {
   },
   data() {
     return {
-      tableData: [{
-        tag_name: 'Python',
-        sort_key: '1'
-      }, {
-        tag_name: '分析',
-        sort_key: '2'
-      }, {
-        tag_name: 'AtCoder',
-        sort_key: '3'
-      }, {
-        tag_name: 'AWS/GCP',
-        sort_key: '4'
-      }],
       tags: [],
     };
   },

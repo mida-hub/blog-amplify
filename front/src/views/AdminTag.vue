@@ -4,19 +4,19 @@
       <Menu/>
     </el-row>
     <el-row>
-      <TagView/>
+      <TagEditor/>
     </el-row>
   </div>
 </template>
 
 <script>
 import Menu from '@/components/admin/Menu'
-import TagView from '@/components/admin/TagView'
+import TagEditor from '@/components/admin/TagEditor'
 
 export default {
   components: {
     Menu,
-    TagView
+    TagEditor
   },
 }
 </script>

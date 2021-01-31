@@ -30,9 +30,7 @@ export default {
       name: tagName,
       sort_key: sortKey
     }
-    console.log(tagDetail)
     const newTag = await API.graphql(graphqlOperation(createTag, tagDetail))
-    console.log(newTag);
     return newTag
   },
 }
