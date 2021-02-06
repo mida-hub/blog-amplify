@@ -33,4 +33,44 @@ export default {
     const newTag = await API.graphql(graphqlOperation(createTag, tagDetail))
     return newTag
   },
+
+  async updateTag(tagId, tagName, tagSortKey) {
+    const updateTag = `
+    mutation updateBlogTagModelType($id: ID!, $name: String, $sort_key: Int) {
+      updateBlogTagModelType(
+        input: {
+          id: $id,
+          name: $name,
+          sort_key: $sort_key
+        }
+      ) {
+        id
+      }
+    }
+    `
+    const tagDetail = {
+      id: tagId,
+      name: tagName,
+      sort_key: tagSortKey
+    }
+    return API.graphql(graphqlOperation(updateTag, tagDetail))
+  },
+
+  async deleteTag(tagId) {
+    const deleteTag = `
+    mutation deleteBlogTagModelType($id: ID!) {
+      deleteBlogTagModelType(
+        input: {
+          id: $id
+        }
+      ) {
+        id
+      }
+    }
+    `
+    const tagDetail = {
+      id: tagId
+    }
+    return API.graphql(graphqlOperation(deleteTag, tagDetail))
+  }
 }

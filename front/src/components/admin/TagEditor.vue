@@ -3,11 +3,11 @@
     <el-row type="flex" justify="center">
       <div class="tag-regist">
         タグ登録
-        <el-form label-position="left" :inline="true">
+        <el-form label-position="left" :inline="true" :model="form" ref="form" :rules="rules">
           <el-form-item label="タグ名">
             <el-input v-model="form.name"></el-input>
           </el-form-item>
-          <el-form-item label="ソートキー">
+          <el-form-item label="ソートキー" prop="sort_key">
             <el-input v-model.number="form.sort_key"></el-input>
           </el-form-item>
           <el-form-item>
@@ -36,13 +36,15 @@
             prop="sort_key"
             width="180">
             <template v-slot="scope">
-              <el-input v-model="scope.row.sort_key"></el-input>
+              <el-input v-model="scope.row.sort_key" @input="validate(scope.$index, scope.row.sort_key)"></el-input>
             </template>
           </el-table-column>
           <el-table-column
             label="アクション">
-            <el-button type="primary" @click="onSubmit">更新</el-button>
-            <el-button type="danger" @click="onSubmit">削除</el-button>
+            <template v-slot="scope">
+              <el-button type="primary" @click="updateTag(scope.row)">更新</el-button>
+              <el-button type="danger" @click="deleteTag(scope.row)">削除</el-button>
+            </template>
           </el-table-column>
         </el-table>
       </div>
@@ -54,10 +56,24 @@
 import tagService from '../../services/tagService'
 
 export default {
+  props: {
+    isNumber: [
+      {type: 'number', message: 'please input number', trigger: 'change'}
+    ],
+  },
   components: {
   },
   data() {
     return {
+      rules: {
+        sort_key: [
+          {
+            pattern: /^(0|[1-9]|[1-9][0-9]+)$/, 
+            trigger: 'change',
+            message: `整数値以外は受け付けません`
+          }
+        ]
+      },
       form: {
         name: '',
         sort_key: ''
@@ -66,13 +82,54 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log('submit!');
+    createTag() {
+      this.$refs['form'].validate((valid) => {
+        if (!valid) {
+          return
+        } else {
+          this.$confirm('本当に登録しますか？', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+          }).then(() => {
+            this.createTagService();
+          }).catch(() => {
+          })
+        }
+      });
     },
-    async createTag() {
-      await tagService.createTag(this.form.name, this.form.sort_key)
+    async createTagService() {
+      await tagService.createTag(this.form.name, this.form.sort_key);
       this.form.name = ''
       this.form.sort_key = ''
+      this.tags = await tagService.getTagList(); 
+    },
+    updateTag(tag) {
+      this.$confirm('本当に更新しますか？', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        this.updateTagService(tag);
+      }).catch(() => {
+      })
+    },
+    async updateTagService(tag) {
+      await tagService.updateTag(tag.id, tag.name, tag.sort_key);
+      this.tags = await tagService.getTagList();
+    },
+    deleteTag(tag) {
+      this.$confirm('本当に削除しますか？', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        this.deleteTagService(tag);
+      }).catch(() => {
+      })
+    },
+    async deleteTagService(tag){
+      await tagService.deleteTag(tag.id);
       this.tags = await tagService.getTagList();
     }
   },
